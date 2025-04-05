@@ -1,281 +1,262 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Medialityc - Marketing, Publicidad y Desarrollo de Software</title>
-  <meta name="description" content="Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software. Descubre nuestro enfoque innovador y creativo.">
-  <meta name="keywords" content="Medialityc, Marketing, Publicidad, Desarrollo de Software, Innovación, Creatividad">
-  <meta name="author" content="Medialityc">
-  
-  <!-- Open Graph Meta -->
-  <meta property="og:title" content="Medialityc - Marketing, Publicidad y Desarrollo de Software">
-  <meta property="og:description" content="Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software.">
-  <meta property="og:image" content="URL_DE_TU_LOGO">
-  <meta property="og:url" content="https://mdialityc.com">
-  <meta property="og:type" content="website">
-  
-  <!-- Twitter Card Meta -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Medialityc - Marketing, Publicidad y Desarrollo de Software">
-  <meta name="twitter:description" content="Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software.">
-  <meta name="twitter:image" content="URL_DE_TU_LOGO">
-  
-  <style>
-    /* Reset y estilos básicos */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Medialityc - Marketing, Publicidad y Desarrollo de Software</title>
+    <meta
+      name="description"
+      content="Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software. Descubre nuestro enfoque innovador y creativo."
+    />
+    <meta
+      name="keywords"
+      content="Medialityc, Marketing, Publicidad, Desarrollo de Software, Innovación, Creatividad"
+    />
+    <meta name="author" content="Medialityc" />
 
-    /* Canvas para la animación de fondo */
-    #bgCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
+    <!-- Open Graph Meta -->
+    <meta
+      property="og:title"
+      content="Medialityc - Marketing, Publicidad y Desarrollo de Software"
+    />
+    <meta
+      property="og:description"
+      content="Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software."
+    />
+    <meta property="og:image" content="URL_DE_TU_LOGO" />
+    <meta property="og:url" content="https://mdialityc.com" />
+    <meta property="og:type" content="website" />
 
-    /* Contenedor principal */
-    #animation-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
+    <!-- Twitter Card Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Medialityc - Marketing, Publicidad y Desarrollo de Software"
+    />
+    <meta
+      name="twitter:description"
+      content="Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software."
+    />
+    <meta name="twitter:image" content="URL_DE_TU_LOGO" />
 
-    /* Logo central */
-    #logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-    }
-    #logo svg {
-      width: 200px;
-      height: auto;
-    }
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./images/logo.svg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--HEADER-->
+    <header>
+      <img src="./images/logo.svg" alt="company-logo" id="company-logo" />
+      <nav>
+        <ul>
+          <li><a href="#featured-projects">Proyectos</a></li>
+          <li><a href="#about-us">Sobre Nosotros</a></li>
+          <li class="contact"><a href="#footer">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    /* Íconos de redes sociales en la esquina superior izquierda */
-    #social-icons {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 4;
-    }
-    #social-icons a {
-      width: 30px;
-      height: 30px;
-      display: inline-block;
-      fill: #fff;
-      transition: transform 0.3s;
-    }
-    #social-icons a:hover {
-      transform: scale(1.2);
-    }
-    #social-icons svg {
-      width: 100%;
-      height: 100%;
-    }
+    <!--HERO SECTION-->
+    <section id="hero">
+      <div class="hero-content">
+        <h1>Diseño y Desarrollo de Software de Vanguardia</h1>
+        <p>
+          Soluciones <span id="rotating-words">DE LUJO</span> para tu empresa.
+        </p>
+        <a href="#footer" class="cta-button">Contacto</a>
+      </div>
+    </section>
 
-    /* Capas de degradado en la parte superior e inferior */
-    .gradient {
-      position: fixed;
-      width: 100%;
-      height: 20%;
-      z-index: 2;
-      animation: gradientMove 10s ease-in-out infinite alternate;
-      opacity: 0.5;
-    }
-    .gradient.top {
-      top: 0;
-      background: linear-gradient(90deg, #00ff00, #008000);
-    }
-    .gradient.bottom {
-      bottom: 0;
-      background: linear-gradient(90deg, #0000ff, #00008b);
-    }
-    @keyframes gradientMove {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(20%); }
-    }
-  </style>
-</head>
-<body>
-  <!-- Íconos de Redes Sociales -->
-  <div id="social-icons">
-    <!-- Twitter -->
-    <a href="https://twitter.com/tuusuario" target="_blank" aria-label="Twitter">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.6 8.6 0 0 1-2.72 1.04 4.26 4.26 0 0 0-7.26 3.88A12.08 12.08 0 0 1 3.16 4.8a4.26 4.26 0 0 0 1.32 5.69 4.22 4.22 0 0 1-1.93-.53v.05a4.26 4.26 0 0 0 3.42 4.18 4.3 4.3 0 0 1-1.92.07 4.26 4.26 0 0 0 3.98 2.96A8.54 8.54 0 0 1 2 19.54 12.07 12.07 0 0 0 8.29 21c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.35-.02-.53A8.36 8.36 0 0 0 22.46 6z"/>
-      </svg>
-    </a>
-    <!-- Facebook -->
-    <a href="https://facebook.com/tuusuario" target="_blank" aria-label="Facebook">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.3 3h-1.9v7A10 10 0 0 0 22 12z"/>
-      </svg>
-    </a>
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/tuusuario" target="_blank" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.1h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.8V24h-4v-7.7c0-1.8 0-4.1-2.5-4.1-2.5 0-2.9 1.9-2.9 4v7.8h-4V8z"/>
-      </svg>
-    </a>
-    <!-- WhatsApp -->
-    <a href="https://wa.me/tu-numero" target="_blank" aria-label="WhatsApp">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.15-.198.297-.767.967-.94 1.164-.173.198-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.672-1.62-.92-2.217-.242-.58-.487-.5-.672-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.79.371-.27.297-1.04 1.016-1.04 2.479s1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.87.118.57-.085 1.758-.718 2.006-1.413.248-.697.248-1.293.173-1.413-.074-.12-.27-.198-.567-.347zM12.004 2C6.486 2 2 6.486 2 12.004c0 2.116.554 4.095 1.516 5.836L2 22l4.292-1.52A9.955 9.955 0 0 0 12.004 22c5.518 0 10.004-4.486 10.004-10.004C22.008 6.486 17.522 2 12.004 2z"/>
-      </svg>
-    </a>
-    <!-- Pinterest -->
-    <a href="https://pinterest.com/tuusuario" target="_blank" aria-label="Pinterest">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 0C5.372 0 0 5.373 0 12c0 4.991 3.657 9.157 8.438 10.104-.117-.858-.222-2.176.047-3.114.242-.832 1.562-5.31 1.562-5.31s-.398-.797-.398-1.976c0-1.85 1.074-3.233 2.41-3.233 1.137 0 1.685.853 1.685 1.875 0 1.142-.728 2.85-1.105 4.435-.316 1.317.663 2.389 1.967 2.389 2.36 0 4.165-2.482 4.165-6.065 0-3.172-2.285-5.392-5.547-5.392-3.78 0-6.003 2.83-6.003 5.754 0 1.138.436 2.361.98 3.028.107.13.123.243.09.373-.098.397-.32 1.267-.363 1.44-.057.23-.187.279-.43.168-1.602-.74-2.606-3.092-2.606-4.977 0-4.053 2.945-7.787 8.495-7.787 4.461 0 7.93 3.178 7.93 7.42 0 4.431-2.79 7.99-6.668 7.99-1.303 0-2.53-.677-2.95-1.48l-.803 3.06c-.29 1.113-1.077 2.507-1.609 3.36C9.945 23.84 10.972 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
-      </svg>
-    </a>
-    <!-- Figma -->
-    <a href="https://figma.com/@tuusuario" target="_blank" aria-label="Figma">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 0C8.686 0 6 2.686 6 6c0 2.364 1.538 4.37 3.645 5.166V24h2.71V11.166C16.462 10.37 18 8.364 18 6c0-3.314-2.686-6-6-6zM6 6c0-3.314 2.686-6 6-6s6 2.686 6 6c0 2.364-1.538 4.37-3.645 5.166V24H9.645V11.166C7.538 10.37 6 8.364 6 6z"/>
-      </svg>
-    </a>
-    <!-- Digital Ocean -->
-    <a href="https://digitalocean.com" target="_blank" aria-label="Digital Ocean">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 0L1 6v12l11 6 11-6V6L12 0zm7.5 16.5l-7.5 4.07-7.5-4.07V7.43l7.5-4.07 7.5 4.07v9.07z"/>
-      </svg>
-    </a>
-  </div>
+    <script>
+      const words = ["EFICIENTES", "INNOVADORAS", "VERSATILES"];
+      let currentIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const rotatingWordsElement = document.getElementById("rotating-words");
 
-  <!-- Degradados animados -->
-  <div class="gradient top"></div>
-  <div class="gradient bottom"></div>
+      function typeWriter() {
+        const currentWord = words[currentIndex];
 
-  <!-- Contenedor de la animación y el logo central -->
-  <div id="animation-container">
-    <canvas id="bgCanvas"></canvas>
-    <!-- Logo central: Letra "M" con degradado de verde (arriba) a azul (abajo) -->
-    <div id="logo">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="logoGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#00ff00"/>
-            <stop offset="100%" stop-color="#0000ff"/>
-          </linearGradient>
-        </defs>
-        <text x="50%" y="70%" text-anchor="middle" font-size="80" font-family="Arial, sans-serif" fill="url(#logoGradient)">M</text>
-      </svg>
-    </div>
-  </div>
+        if (!isDeleting) {
+          rotatingWordsElement.textContent = currentWord.substring(
+            0,
+            charIndex + 1
+          );
+          charIndex++;
 
-  <script>
-    // Animación de partículas de fondo con interacción del mouse
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const particleCount = 100;
-    const maxDistance = 100;
-    let mouse = { x: null, y: null };
+          if (charIndex === currentWord.length) {
+            isDeleting = true;
+            setTimeout(typeWriter, 1000);
+          } else {
+            setTimeout(typeWriter, 100);
+          }
+        } else {
+          rotatingWordsElement.textContent = currentWord.substring(
+            0,
+            charIndex - 1
+          );
+          charIndex--;
 
-    // Ajusta el tamaño del canvas
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    // Detecta el movimiento del mouse
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseout', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    // Clase para cada partícula
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 1.5;
-        this.vy = (Math.random() - 0.5) * 1.5;
-        this.radius = 2;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        // Rebote en los bordes
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "#ffffff";
-        ctx.fill();
-      }
-    }
-
-    // Inicializa las partículas
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    // Dibuja líneas entre partículas cercanas
-    function connectParticles() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          let dx = particles[i].x - particles[j].x;
-          let dy = particles[i].y - particles[j].y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < maxDistance) {
-            // Aumenta la opacidad si el cursor está cerca
-            let opacity = 1 - (distance / maxDistance);
-            if (mouse.x && mouse.y) {
-              let midX = (particles[i].x + particles[j].x) / 2;
-              let midY = (particles[i].y + particles[j].y) / 2;
-              let dxm = midX - mouse.x;
-              let dym = midY - mouse.y;
-              let mouseDistance = Math.sqrt(dxm * dxm + dym * dym);
-              if (mouseDistance < maxDistance) {
-                opacity = 1;
-              }
-            }
-            ctx.strokeStyle = "rgba(255,255,255," + opacity + ")";
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
+          if (charIndex === 0) {
+            isDeleting = false;
+            currentIndex = (currentIndex + 1) % words.length;
+            setTimeout(typeWriter, 500);
+          } else {
+            setTimeout(typeWriter, 50);
           }
         }
       }
-    }
+      typeWriter();
+    </script>
 
-    // Bucle de animación
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      connectParticles();
-      requestAnimationFrame(animate);
-    }
+    <!--PROJECTS-->
+    <section id="featured-projects">
+      <div class="projects-content">
+        <h2>Proyectos Destacados</h2>
+        <p class="description">
+          Explora algunos de los proyectos más importantes en los que hemos
+          trabajado. Cada uno representa nuestro compromiso con la innovación y
+          la calidad.
+        </p>
 
-    initParticles();
-    animate();
-  </script>
-</body>
+        <div class="projects-grid">
+          <!-- Proyecto 1 -->
+          <div class="project-card">
+            <div
+              class="project-image"
+              style="background-image: url('./images/project1.jpg')"
+            ></div>
+            <h3 class="project-title">Plataforma de Gestión de Inventarios</h3>
+            <div class="project-info">
+              <p>
+                Una solución integral para la gestión de inventarios en tiempo
+                real.
+              </p>
+              <p class="tech-used">Tecnologías: React, Node.js, MongoDB</p>
+              <a href="#" class="project-button">Ver Más</a>
+            </div>
+          </div>
+
+          <!-- Proyecto 2 -->
+          <div class="project-card">
+            <div
+              class="project-image"
+              style="background-image: url('./images/project1.jpg')"
+            ></div>
+            <h3 class="project-title">Aplicación de Comercio Electrónico</h3>
+            <div class="project-info">
+              <p>
+                Una app móvil para compras en línea con experiencia de usuario
+                optimizada.
+              </p>
+              <p class="tech-used">Tecnologías: Flutter, Firebase</p>
+              <a href="#" class="project-button">Ver Más</a>
+            </div>
+          </div>
+
+          <!-- Proyecto 3 -->
+          <div class="project-card">
+            <div
+              class="project-image"
+              style="background-image: url('./images/project1.jpg')"
+            ></div>
+            <h3 class="project-title">Sistema de Análisis de Datos</h3>
+            <div class="project-info">
+              <p>
+                Una plataforma para análisis y visualización de datos en tiempo
+                real.
+              </p>
+              <p class="tech-used">Tecnologías: Python, Django, D3.js</p>
+              <a href="#" class="project-button">Ver Más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--ABOUT US-->
+    <section id="about-us">
+      <div class="about-content">
+        <div class="logo-container">
+          <img src="./images/logo.svg" alt="Logo de Medialityc" class="animated-logo">
+        </div>
+    
+        <h2>Sobre Nosotros</h2>
+        <p class="description">
+          En Medialityc, combinamos innovación y tecnología para crear soluciones digitales que impulsan tu negocio.
+        </p>
+      </div>
+
+      <div class="stats">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h4>+50</h4>
+            <p>Proyectos Completados</p>
+          </div>
+          <div class="stat-item">
+            <h4>+100</h4>
+            <p>Clientes Satisfechos</p>
+          </div>
+          <div class="stat-item">
+            <h4>3 Años</h4>
+            <p>de Experiencia</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--FOOTER-->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="./images/logo.svg" alt="Logo de Medialityc">
+        </div>
+        <div class="footer-links">
+          <h3>Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contacto</h3>
+          <ul>
+            <li><a href="mailto:info@medialityc.com">correo@medialityc.com</a></li>
+            <li><a href="tel:+123456789">+123 456 789</a></li>
+            <li>La Habana, Cuba</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-icons">
+          <a href="#" target="_blank" aria-label="Twitter">
+            <img src="./images/twitter-logo-24.png" alt="Twitter">
+          </a>
+          <a href="#" target="_blank" aria-label="Facebook">
+            <img src="./images/facebook-logo-24.png" alt="Facebook">
+          </a>
+          <a href="#" target="_blank" aria-label="LinkedIn">
+            <img src="./images/linkedin-logo-24.png" alt="LinkedIn">
+          </a>
+          <a href="#" target="_blank" aria-label="WhatsApp">
+            <img src="./images/whatsapp-logo-24.png" alt="WhatsApp">
+          </a>
+          <a href="#" target="_blank" aria-label="Figma">
+            <img src="./images/figma-logo-24.png" alt="Figma">
+          </a>
+          <a href="#" target="_blank" aria-label="DigitalOcean">
+            <img src="./images/digitalocean-logo-24.png" alt="DigitalOcean">
+          </a>
+        </div>
+        <div class="copyright">
+          <i>© 2025 Medialityc. Todos los derechos reservados.</i>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
