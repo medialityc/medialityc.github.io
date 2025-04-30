@@ -7,7 +7,7 @@
     <meta
       name="description"
       content="Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software. Descubre nuestro enfoque innovador y creativo."
-    />
+    /> 
     <meta
       name="keywords"
       content="Medialityc, Marketing, Publicidad, Desarrollo de Software, Innovación, Creatividad"
@@ -50,6 +50,7 @@
     <!--HEADER-->
     <header>
       <img src="./images/logo.svg" alt="company-logo" id="company-logo" />
+      <a href="#" id="menu-btn-container" onclick="changeMenu()"><svg id="menu-btn" xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 24 24" style="fill: rgba(22, 87, 207, 1);transform: ;msFilter:;"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></a>
       <nav>
         <ul>
           <li><a href="#featured-projects">Proyectos</a></li>
@@ -58,6 +59,15 @@
         </ul>
       </nav>
     </header>
+
+    <!--HEADER RESPONSIVE-->
+    <div id="overlay-header">
+        <ul>
+          <li><a href="#featured-projects">Proyectos</a></li>
+          <li><a href="#about-us">Sobre Nosotros</a></li>
+          <li class="contact"><a href="#footer">Contacto</a></li>
+        </ul>
+    </div>
 
     <!--HERO SECTION-->
     <section id="hero">
@@ -69,48 +79,6 @@
         <a href="#footer" class="cta-button">Contacto</a>
       </div>
     </section>
-
-    <script>
-      const words = ["EFICIENTES", "INNOVADORAS", "VERSATILES"];
-      let currentIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      const rotatingWordsElement = document.getElementById("rotating-words");
-
-      function typeWriter() {
-        const currentWord = words[currentIndex];
-
-        if (!isDeleting) {
-          rotatingWordsElement.textContent = currentWord.substring(
-            0,
-            charIndex + 1
-          );
-          charIndex++;
-
-          if (charIndex === currentWord.length) {
-            isDeleting = true;
-            setTimeout(typeWriter, 1000);
-          } else {
-            setTimeout(typeWriter, 100);
-          }
-        } else {
-          rotatingWordsElement.textContent = currentWord.substring(
-            0,
-            charIndex - 1
-          );
-          charIndex--;
-
-          if (charIndex === 0) {
-            isDeleting = false;
-            currentIndex = (currentIndex + 1) % words.length;
-            setTimeout(typeWriter, 500);
-          } else {
-            setTimeout(typeWriter, 50);
-          }
-        }
-      }
-      typeWriter();
-    </script>
 
     <!--PROJECTS-->
     <section id="featured-projects">
@@ -258,5 +226,7 @@
         </div>
       </div>
     </footer>
+    
+    <script src="script.js"></script>
   </body>
 </html>
