@@ -105,3 +105,6 @@ overlay.addEventListener('click', function(e) {
     closeMenu();
   }
 });
+
+//Pagina de detalles
+const inventarios = ''
