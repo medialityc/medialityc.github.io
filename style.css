@@ -268,7 +268,7 @@ nav ul {
 
 .project-card:hover .project-image {
   transform: scale(1.1);
-  filter: brightness(0.6);
+  filter: brightness(0.9);
 }
 
 .project-title {
@@ -324,6 +324,7 @@ nav ul {
 
 .project-button:hover {
   background: var(--main-color);
+  color: var(--background-color);
 }
 
 /*ABOUT US*/
