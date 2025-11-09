@@ -21,10 +21,10 @@ export function Particles({
   useManualTime = false,
   manualTime = 0,
   introspect = false,
+  scrollProgress = 0,
   ...props
 }: {
   speed: number;
-  // fov: number
   aperture: number;
   focus: number;
   size: number;
@@ -37,6 +37,7 @@ export function Particles({
   useManualTime?: boolean;
   manualTime?: number;
   introspect?: boolean;
+  scrollProgress?: number;
 }) {
   // Reveal animation state
   const revealStartTime = useRef<number | null>(null);
@@ -87,14 +88,27 @@ export function Particles({
     return particles;
   }, [size]);
 
+  // Frame skipping for performance when scroll is high
+  const frameCounter = useRef(0);
+
   useFrame((state, delta) => {
     if (!dofPointsMaterial || !simulationMaterial) return;
 
-    state.gl.setRenderTarget(target);
-    state.gl.clear();
-    // @ts-ignore
-    state.gl.render(scene, camera);
-    state.gl.setRenderTarget(null);
+    frameCounter.current++;
+    // Skip simulation render passes to lower GPU pressure when user has scrolled far
+    // Higher scroll -> more skipping
+    const skipFrequency =
+      scrollProgress > 0.92 ? 3 : scrollProgress > 0.8 ? 2 : 1;
+    const shouldSkipSimulation =
+      skipFrequency > 1 && frameCounter.current % skipFrequency !== 0;
+
+    if (!shouldSkipSimulation) {
+      state.gl.setRenderTarget(target);
+      state.gl.clear();
+      // @ts-ignore
+      state.gl.render(scene, camera);
+      state.gl.setRenderTarget(null);
+    }
 
     // Use manual time if enabled, otherwise use elapsed time
     const currentTime = useManualTime ? manualTime : state.clock.elapsedTime;
@@ -133,6 +147,7 @@ export function Particles({
     );
 
     simulationMaterial.uniforms.uTime.value = currentTime;
+    // Mantener noiseScale constante; sólo noiseIntensity se modifica externamente por scroll.
     simulationMaterial.uniforms.uNoiseScale.value = noiseScale;
     simulationMaterial.uniforms.uNoiseIntensity.value = noiseIntensity;
     simulationMaterial.uniforms.uTimeScale.value = timeScale * speed;

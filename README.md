@@ -1,6 +1,6 @@
 # Archive
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+_Automatically synced with your [v0.app](https://v0.app) deployments_
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/shared-8867s-projects/v0-archive)
 [![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/7OBKdWwIbzR)
@@ -9,6 +9,21 @@
 
 This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
 Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+
+### Sección de Servicios
+
+Se añadió una nueva sección de servicios en `components/services.tsx` e integrada en la página principal (`app/page.tsx`).
+
+Puedes ajustar el contenido modificando el arreglo `services` dentro del componente o pasar datos dinámicos posteriormente.
+
+Características:
+
+- Grid responsivo (2 columnas en sm, 3 en lg)
+- Tarjetas interactivas con resalte radial según posición del cursor
+- Íconos de `lucide-react`
+- Accesible: cada tarjeta tiene `aria-label` con el título
+
+Para editar estilos, ajusta las clases Tailwind dentro de `ServiceCard`.
 
 ## Deployment
 

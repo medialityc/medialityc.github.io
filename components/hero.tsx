@@ -10,16 +10,16 @@ export function Hero() {
   const [hovering, setHovering] = useState(false);
   return (
     <div className="flex flex-col h-svh justify-between">
-      <GL hovering={hovering} />
-
       <div className="pb-16 mt-auto text-center relative">
-        <Pill className="mb-6">BETA RELEASE</Pill>
+        <Pill className="mb-6">Ya cumplimos un año</Pill>
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-sentient">
-          Unlock your <br />
-          <i className="font-light">future</i> growth
+          Desbloquea tu <br />
+          <i className="font-light">máximo</i> crecimiento
         </h1>
         <p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-8 max-w-[440px] mx-auto">
-          Through perpetual investment strategies that outperform the market
+          Transformamos tu visión en realidad digital con soluciones
+          tecnológicas avanzadas y estrategias de marketing que impulsan
+          resultados.
         </p>
 
         <Link className="contents max-sm:hidden" href="/#contact">
@@ -28,7 +28,7 @@ export function Hero() {
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
-            [Contact Us]
+            [Contactános]
           </Button>
         </Link>
         <Link className="contents sm:hidden" href="/#contact">
@@ -38,7 +38,7 @@ export function Hero() {
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
-            [Contact Us]
+            [Contactános]
           </Button>
         </Link>
       </div>
