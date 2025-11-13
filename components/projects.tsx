@@ -3,7 +3,7 @@
 import LaptopComponente from "@/components/gl/laptop-componente";
 import { AnimatedReveal } from "@/components/animated-reveal";
 import { BrandMark } from "@/components/brand-mark";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface ProjectMeta {
   id: string;
@@ -77,13 +77,27 @@ export function ProjectsSection() {
 }
 
 function ProjectItem({ meta, index }: { meta: ProjectMeta; index: number }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 640); // breakpoint sm
+    handler();
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+
+  // Responsive sizes: smaller physical screen for mobile but keep desktop viewport to force desktop layout inside iframe
+  const screenWidth = isMobile ? 320 : 340;
+  const screenHeight = isMobile ? 200 : 215;
+  const scale = isMobile ? 1.08 : 1.22;
+
   return (
     <div className="flex flex-col items-center gap-5 w-full">
-      <div className="relative w-full aspect-4/3 mx-auto ">
+      <div className="relative w-full mx-auto aspect-4/3 lg:max-w-full sm:max-w-[460px]">
         <LaptopComponente
-          scale={1.22}
-          screenWidth={340}
-          screenHeight={215}
+          scale={scale}
+          screenWidth={screenWidth}
+          screenHeight={screenHeight}
           viewportWidth={1280}
           viewportHeight={800}
         >
