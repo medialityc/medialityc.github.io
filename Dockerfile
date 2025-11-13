@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
 
-RUN pnpm i --legacy-peer-deps
+RUN npm i --legacy-peer-deps
 
 FROM base AS builder
 
