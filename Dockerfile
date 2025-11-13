@@ -1,47 +1,47 @@
-# Multi-stage Dockerfile for Next.js (pnpm)
-# Build stage
-FROM node:20-alpine AS builder
+FROM node:20.11-alpine AS base
 
-# Install system deps if needed (optional)
-# RUN apk add --no-cache libc6-compat
+FROM base AS deps
+
+RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
-# Mantener devDependencies: usar NODE_ENV=development durante la instalación
-ENV NODE_ENV=development
 
-# Enable pnpm via Corepack and pin version
-RUN corepack enable && corepack prepare pnpm@9.12.2 --activate
+COPY package.json package-lock.json ./
 
-# Only copy manifest files first to leverage Docker layer caching
-COPY package.json pnpm-lock.yaml ./
+RUN npm i --legacy-peer-deps
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+FROM base AS builder
 
-# Copy source code
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+
 COPY . .
 
-# Build Next.js app
-RUN pnpm build
+RUN npm run build
 
-# NO pruning: se mantienen devDependencies según solicitud
+FROM base AS runner
 
-# Runtime stage
-FROM node:20-alpine AS runner
 WORKDIR /app
+
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy necessary build artifacts
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
+RUN addgroup -g 1001 -S nodejs
+
+RUN adduser -S nextjs -u 1001
+
 COPY --from=builder /app/public ./public
-# Copy Next config if present
-COPY --from=builder /app/next.config.mjs ./next.config.mjs
-COPY --from=builder /app/next.config.ts ./next.config.ts
 
-EXPOSE 3000
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 
-# Default command: start Next.js server
-CMD ["node", "node_modules/next/dist/bin/next", "start", "-p", "3000"]
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3002
+
+ENV PORT 3002
+
+ENV HOSTNAME 0.0.0.0
+
+CMD ["node", "server.js"]
