@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { GL } from "./gl";
 import { Pill } from "./pill";
 import { Button } from "./ui/button";
 import { useState } from "react";
-import { Logo } from "./logo";
 import { BrandMark } from "./brand-mark";
 
 export function Hero() {

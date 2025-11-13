@@ -6,8 +6,10 @@ import { Logo } from "./logo";
 import { LogoHorizontal } from "./logo-horizontal";
 
 const sections = [
-  { id: "beneficios", label: "Beneficios" },
   { id: "services", label: "Servicios" },
+  { id: "beneficios", label: "Beneficios" },
+  { id: "proyectos", label: "Proyectos" },
+  { id: "equipo", label: "Equipo" },
   { id: "testimonios", label: "Testimonios" },
   { id: "contacto", label: "Contacto" },
 ];

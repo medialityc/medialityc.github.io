@@ -14,10 +14,12 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { name: "About", href: "#about" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Insights", href: "#insights" },
-    { name: "Contact", href: "#contact" },
+    { name: "Servicios", href: "#services" },
+    { name: "Beneficios", href: "#beneficios" },
+    { name: "Proyectos", href: "#proyectos" },
+    { name: "Equipo", href: "#equipo" },
+    { name: "Testimonios", href: "#testimonios" },
+    { name: "Contacto", href: "#contacto" },
   ];
 
   const handleLinkClick = () => {
@@ -34,8 +36,8 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
           )}
           aria-label="Open menu"
         >
-          <Menu className="group-[[data-state=open]]:hidden" size={24} />
-          <X className="hidden group-[[data-state=open]]:block" size={24} />
+          <Menu className="group-data-[state=open]:hidden" size={24} />
+          <X className="hidden group-data-[state=open]:block" size={24} />
         </button>
       </Dialog.Trigger>
 
@@ -64,7 +66,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
                 key={item.name}
                 href={item.href}
                 onClick={handleLinkClick}
-                className="text-xl font-mono uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-2"
+                className="text-xl font-mono uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground py-2"
               >
                 {item.name}
               </Link>
@@ -72,11 +74,11 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
 
             <div className="mt-6">
               <Link
-                href="/#sign-in"
+                href="#contacto"
                 onClick={handleLinkClick}
                 className="inline-block text-xl font-mono uppercase text-primary transition-colors ease-out duration-150 hover:text-primary/80 py-2"
               >
-                Sign In
+                Hablemos
               </Link>
             </div>
           </nav>
