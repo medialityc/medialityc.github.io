@@ -6,7 +6,8 @@ FROM node:20-alpine AS builder
 # RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
-ENV NODE_ENV=production
+# Mantener devDependencies: usar NODE_ENV=development durante la instalación
+ENV NODE_ENV=development
 
 # Enable pnpm via Corepack and pin version
 RUN corepack enable && corepack prepare pnpm@9.12.2 --activate
@@ -23,8 +24,7 @@ COPY . .
 # Build Next.js app
 RUN pnpm build
 
-# Prune dev dependencies for smaller runtime image
-RUN pnpm prune --prod
+# NO pruning: se mantienen devDependencies según solicitud
 
 # Runtime stage
 FROM node:20-alpine AS runner
