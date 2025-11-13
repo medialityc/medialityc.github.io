@@ -33,6 +33,12 @@ const featuredProjects: ProjectMeta[] = [
     summary: "Sistema administrativo para agencia de paquetería",
     url: "https://zasbyjmc.com/",
   },
+  {
+    id: "suntravelsonline",
+    name: "Sun Travels Online",
+    summary: "Agencia de viajes especializada en destinos soleados.",
+    url: "https://www.suntravelsonline.com/",
+  },
 ];
 
 export function ProjectsSection() {
@@ -53,7 +59,7 @@ export function ProjectsSection() {
           </p>
         </AnimatedReveal>
         <BrandMark variant="divider" />
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3" role="list">
+        <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-1 " role="list">
           {featuredProjects.map((p, i) => (
             <AnimatedReveal
               key={p.id}
@@ -73,8 +79,14 @@ export function ProjectsSection() {
 function ProjectItem({ meta, index }: { meta: ProjectMeta; index: number }) {
   return (
     <div className="flex flex-col items-center gap-5 w-full">
-      <div className="relative w-full aspect-4/3 max-w-[460px] mx-auto">
-        <LaptopComponente scale={1.25}>
+      <div className="relative w-full aspect-4/3 mx-auto ">
+        <LaptopComponente
+          scale={1.22}
+          screenWidth={340}
+          screenHeight={215}
+          viewportWidth={1280}
+          viewportHeight={800}
+        >
           <iframe
             src={meta.url}
             title={meta.name}

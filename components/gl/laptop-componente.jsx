@@ -10,7 +10,15 @@ import {
   OrbitControls,
 } from "@react-three/drei";
 
-function Model({ children, scale = 1, ...props }) {
+function Model({
+  children,
+  scale = 1,
+  screenWidth = 480,
+  screenHeight = 300,
+  viewportWidth = 1280,
+  viewportHeight = 800,
+  ...props
+}) {
   const group = useRef();
   // Cargar modelo GLTF
   const { nodes, materials } = useGLTF("/mac-draco.glb");
@@ -39,6 +47,12 @@ function Model({ children, scale = 1, ...props }) {
       0.1
     );
   });
+  // Escala para que el contenido grande (viewport) quepa en la pantalla pequeña del modelo
+  const scaleFactor = Math.min(
+    screenWidth / viewportWidth,
+    screenHeight / viewportHeight
+  );
+
   return (
     <group ref={group} {...props} scale={scale} dispose={null}>
       <group rotation-x={-0.425} position={[0, -0.04, 0.41]}>
@@ -60,14 +74,25 @@ function Model({ children, scale = 1, ...props }) {
               occlude
             >
               <div
-                className="wrapper relative w-[350px] h-[220px] overflow-hidden rounded-md bg-black/80 text-white"
+                className="wrapper relative overflow-hidden rounded-md bg-black/80 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)]"
+                style={{ width: screenWidth, height: screenHeight }}
                 onPointerDown={(e) => e.stopPropagation()}
               >
-                {children || (
-                  <div className="flex h-full items-center justify-center text-xs opacity-60">
-                    Placeholder pantalla
-                  </div>
-                )}
+                <div
+                  className="inner relative"
+                  style={{
+                    width: viewportWidth,
+                    height: viewportHeight,
+                    transform: `scale(${scaleFactor})`,
+                    transformOrigin: "top left",
+                  }}
+                >
+                  {children || (
+                    <div className="flex h-full items-center justify-center text-xs opacity-60">
+                      Placeholder pantalla
+                    </div>
+                  )}
+                </div>
               </div>
             </Html>
           </mesh>
@@ -100,13 +125,32 @@ function Model({ children, scale = 1, ...props }) {
 // Precargar el modelo para mejorar performance
 useGLTF.preload("/mac-draco.glb");
 
-export default function LaptopComponente({ children, scale = 1.15 }) {
+export default function LaptopComponente({
+  children,
+  scale = 1.15,
+  screenWidth = 560,
+  screenHeight = 360,
+  viewportWidth = 1280,
+  viewportHeight = 800,
+}) {
   return (
-    <Canvas camera={{ position: [-5, 0, -15], fov: 55 }} dpr={[1, 1.5]}>
+    <Canvas
+      camera={{ position: [-5, 0, -15], fov: 55 }}
+      dpr={[1, 1.5]}
+      style={{ overflow: "visible" }}
+    >
       <pointLight position={[10, 10, 10]} intensity={1.4} />
       <Suspense fallback={null}>
         <group rotation={[0, Math.PI, 0]} position={[0, 1, 0]}>
-          <Model scale={scale}>{children}</Model>
+          <Model
+            scale={scale}
+            screenWidth={screenWidth}
+            screenHeight={screenHeight}
+            viewportWidth={viewportWidth}
+            viewportHeight={viewportHeight}
+          >
+            {children}
+          </Model>
         </group>
         <Environment preset="city" />
       </Suspense>

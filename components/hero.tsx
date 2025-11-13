@@ -22,7 +22,7 @@ export function Hero() {
           Desbloquea tu <br />
           <i className="font-light">máximo</i> crecimiento
         </h1>
-        <p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-8 max-w-[440px] mx-auto">
+        <p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-8 max-w-[640px] mx-auto">
           Transformamos tu visión en realidad digital con soluciones
           tecnológicas avanzadas y estrategias de marketing que impulsan
           resultados.
