@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import { Logo } from "./logo";
 import { MobileMenu } from "./mobile-menu";
 import { useEffect, useRef, useState } from "react";
+import { Logo } from "./logo";
+import { LogoHorizontal } from "./logo-horizontal";
 
 const sections = [
   { id: "beneficios", label: "Beneficios" },
@@ -70,7 +71,7 @@ export const Header = () => {
   const containerPadding = scrolled ? "py-4 md:py-6" : "py-8";
   const logoSize = scrolled
     ? "w-[90px] md:w-[110px]"
-    : "w-[100px] md:w-[120px]";
+    : "w-[150px] md:w-[170px]";
 
   return (
     <div
@@ -93,7 +94,7 @@ export const Header = () => {
       </div>
       <header className="flex items-center justify-between container">
         <Link href="/" aria-label="Ir al inicio">
-          <Logo
+          <LogoHorizontal
             className={logoSize + " transition-[width] duration-300 ease-out"}
           />
         </Link>

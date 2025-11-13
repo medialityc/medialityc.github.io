@@ -5,11 +5,19 @@ import { GL } from "./gl";
 import { Pill } from "./pill";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import { Logo } from "./logo";
+import { BrandMark } from "./brand-mark";
 
 export function Hero() {
   const [hovering, setHovering] = useState(false);
   return (
-    <div className="flex flex-col h-svh justify-between">
+    <div className="flex flex-col h-svh justify-between relative">
+      {/* Decorative emblem with subtle parallax */}
+      <BrandMark
+        variant="watermark"
+        parallaxRatio={0.045}
+        className="absolute inset-0 flex items-center justify-center"
+      />
       <div className="pb-16 mt-auto text-center relative">
         <Pill className="mb-6">Ya cumplimos un año</Pill>
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-sentient">

@@ -15,6 +15,7 @@ import {
 import { Mail, Phone, MapPin, Sparkles, Send } from "lucide-react";
 import { useState } from "react";
 import { AnimatedReveal } from "@/components/animated-reveal";
+import { BrandMark } from "./brand-mark";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -50,6 +51,10 @@ export function ContactSection() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[780px] h-[780px] bg-radial from-primary/15 via-primary/0 to-transparent blur-3xl" />
       </div>
       <div className="container px-4 md:px-6 relative">
+        {/* Corner emblem accent */}
+        <div className="absolute -left-10 top-10 opacity-[0.05] hidden lg:block">
+          <BrandMark variant="inline" className="w-40" alt="" />
+        </div>
         <AnimatedReveal
           className="text-center space-y-6 mb-14 md:mb-20"
           delay={0}

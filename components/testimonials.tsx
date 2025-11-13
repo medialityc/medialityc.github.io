@@ -2,6 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
 import { AnimatedReveal } from "@/components/animated-reveal";
+import { BrandMark } from "./brand-mark";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   Carousel,
@@ -138,6 +139,10 @@ export function TestimonialsSection() {
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-linear-to-r from-background via-background/70 to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-linear-to-l from-background via-background/70 to-transparent" />
       <div className="container px-4 md:px-6 relative">
+        {/* Side emblem accent */}
+        <div className="absolute -right-8 top-16 hidden xl:block opacity-[0.05]">
+          <BrandMark variant="inline" className="w-44" alt="" />
+        </div>
         <AnimatedReveal
           as="div"
           className="text-center space-y-4 mb-14 md:mb-20"

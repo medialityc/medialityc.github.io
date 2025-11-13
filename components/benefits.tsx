@@ -1,8 +1,9 @@
 "use client";
-import { CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { AnimatedReveal } from "@/components/animated-reveal";
 import React, { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { BrandMark } from "./brand-mark";
 
 const benefits = [
   "Equipo experto con años de experiencia en tecnología y marketing",
@@ -39,6 +40,12 @@ export function BenefitsSection() {
         <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(120deg,hsl(var(--primary)/0.25)_0%,transparent_55%)] mix-blend-overlay" />
       </div>
       <div className="container px-4 md:px-6 relative">
+        {/* Emblem watermark behind heading */}
+        <BrandMark
+          variant="watermark"
+          parallaxRatio={0.02}
+          className="absolute inset-0 flex items-start justify-end pt-10 pr-4"
+        />
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20 items-center">
           <AnimatedReveal className="space-y-7" delay={0} distance={46}>
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-4 py-1.5 text-xs font-mono tracking-wider uppercase text-primary/80 bg-primary/10 backdrop-blur-sm">
@@ -91,11 +98,12 @@ export function BenefitsSection() {
                   distance={34}
                 >
                   <li className="flex items-start gap-4 w-full">
-                    <div className="relative">
-                      <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5 transition-transform group-hover/item:scale-110" />
-                      <span className="absolute -top-2 -right-2 text-[10px] font-semibold bg-primary/15 text-primary px-1.5 py-0.5 rounded">
-                        {index + 1}
-                      </span>
+                    <div className="relative shrink-0 mt-0.5">
+                      <BrandMark
+                        variant="bullet"
+                        className="h-7 w-7 transition-transform group-hover/item:scale-110"
+                      />
+                      <span className="sr-only">Beneficio {index + 1}</span>
                     </div>
                     <p className="text-base md:text-lg leading-relaxed flex-1">
                       {benefit}

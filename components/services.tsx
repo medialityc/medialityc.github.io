@@ -9,6 +9,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { BrandMark } from "./brand-mark";
 import { cn } from "@/lib/utils";
 import {
   Code2,
@@ -164,6 +165,8 @@ export function ServicesSection() {
           Combinamos tecnología, creatividad y análisis para impulsar tu marca.
         </p>
       </AnimatedReveal>
+      {/* Divider emblem accent */}
+      <BrandMark variant="divider" />
       <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (
           <AnimatedReveal key={s.title} delay={0.1 + i * 0.07} distance={50}>
