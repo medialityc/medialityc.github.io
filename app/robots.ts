@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 
+// For static export compatibility
+export const dynamic = "force-static";
+
 // Next.js App Router robots configuration
 export default function robots(): MetadataRoute.Robots {
   return {

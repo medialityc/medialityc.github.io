@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "build:pages": "next build",
+    "serve:export": "npx serve out"
   },
   "dependencies": {
     "@eslint/eslintrc": "latest",
@@ -82,6 +84,7 @@
     "@types/react-dom": "^19",
     "@types/sharp": "^0.32.0",
     "@types/three": "^0.180.0",
+    "eslint": "^9.14.0",
     "postcss": "^8.5",
     "sharp": "^0.33.5",
     "tailwindcss": "^4.1.9",

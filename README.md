@@ -31,6 +31,53 @@ Your project is live at:
 
 **[https://vercel.com/shared-8867s-projects/v0-archive](https://vercel.com/shared-8867s-projects/v0-archive)**
 
+### GitHub Pages (Proyecto)
+
+Se añadió soporte para despliegue automático en **GitHub Pages** usando export estático (`output: "export"`).
+
+URL esperada:
+
+```text
+https://medialityc.github.io/medialityc-landing/
+```
+
+#### Cómo funciona
+
+1. Al hacer push a `main`, el workflow `gh-pages.yml` construye el sitio.
+2. Ejecuta `pnpm build:pages` → genera HTML estático en `out/`.
+3. Publica el contenido en la rama `gh-pages` (o artefacto Pages según acción usada).
+
+#### Scripts añadidos
+
+- `pnpm build:pages`: build + export estático.
+- `pnpm serve:export`: previsualiza localmente la carpeta `out` (requiere conexión a internet para descargar `serve` vía `npx`).
+
+#### Consideraciones
+
+- El `basePath` y `assetPrefix` se aplican sólo en producción para rutas correctas bajo `/medialityc-landing/`.
+- Si alguna página usa funcionalidades no soportadas por `next export` (por ejemplo server actions dinámicas), el build fallará; en ese caso migrar esa lógica a llamadas previas estáticas o eliminar la dependencia dinámica.
+- Imágenes se sirven sin optimización (`unoptimized: true`) porque GitHub Pages no ejecuta el optimizador de Next.
+
+#### Previsualización local del export
+
+```bash
+pnpm install
+pnpm build:pages
+pnpm serve:export
+```
+
+Abre: <http://localhost:3000/medialityc-landing/>
+
+Si prefieres sin basePath para pruebas locales, puedes temporalmente ejecutar:
+
+```bash
+NODE_ENV=development pnpm build:pages
+```
+
+#### Limpieza opcional
+
+Puedes borrar `next.config.mjs` y conservar sólo `next.config.ts` para evitar duplicidad (ya ambas comparten configuración de export).
+
 ## Build your app
 
 Continue building your app on:
