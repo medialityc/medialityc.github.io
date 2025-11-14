@@ -129,7 +129,7 @@ export const GL = () => {
         }}
         gl={{ antialias: false }} // Menos coste en GPU, partículas ya son pequeñas
       >
-        <color attach="background" args={["#000000"]} />
+        <color attach="background" args={["#25222e"]} />
         <Particles
           speed={speed}
           aperture={aperture}

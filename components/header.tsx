@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MobileMenu } from "./mobile-menu";
 import { useEffect, useRef, useState } from "react";
 import { Logo } from "./logo";
+import { ColoredLogo } from "./colored-logo";
 
 const sections = [
   { id: "services", label: "Servicios" },
@@ -126,7 +127,7 @@ export const Header = () => {
           ].join(" ")}
         >
           <span className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-r from-primary/60 via-primary/25 to-transparent opacity-40 blur-lg group-hover:opacity-60 transition-opacity" />
-          <Logo
+          <ColoredLogo
             className={[
               "origin-top-left drop-shadow-[0_6px_12px_rgba(0,0,0,0.45)] transition-transform duration-500 ease-out will-change-transform",
               logoWidth,
@@ -165,11 +166,20 @@ export const Header = () => {
         <div className="hidden lg:flex items-center gap-4">
           <Link
             href="#contacto"
-            className="group inline-flex items-center gap-2 rounded-full border border-primary/50 px-5 py-2 text-xs font-mono uppercase tracking-wider text-primary hover:bg-primary/10 transition-colors"
+            aria-label="Ir a la sección de contacto"
+            className="group relative inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[11px] font-mono uppercase tracking-wider backdrop-blur-md bg-white/5 bg-linear-to-r from-primary/30 via-secondary/20 to-accent/10 border border-white/10 ring-1 ring-primary/30 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.5)] text-primary hover:from-primary/40 hover:via-secondary/30 hover:to-accent/20 hover:shadow-[0_6px_18px_-4px_rgba(0,0,0,0.6)] transition-all duration-300"
           >
-            Hablemos
-            <span className="inline-block transition-transform group-hover:translate-x-1">
-              →
+            <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
+              {/* Soft sheen band */}
+              <span className="absolute -left-full top-0 h-full w-1/3 bg-white/25 blur-xl opacity-0 group-hover:opacity-70 group-hover:translate-x-[300%] transition-all duration-1000 ease-out" />
+              {/* Subtle inner glow */}
+              <span className="absolute inset-0 rounded-full ring-1 ring-white/10 group-hover:ring-white/20 transition-colors" />
+            </span>
+            <span className="relative z-10 flex items-center gap-2">
+              <span className="font-semibold tracking-[0.15em]">Hablemos</span>
+              <span className="inline-flex items-center justify-center size-5 rounded-full bg-primary/20 text-primary/90 backdrop-blur-sm transition-transform group-hover:translate-x-1">
+                →
+              </span>
             </span>
           </Link>
         </div>

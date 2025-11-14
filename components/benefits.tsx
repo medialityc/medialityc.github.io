@@ -71,11 +71,23 @@ export function BenefitsSection() {
             </p>
             <Button
               asChild
-              className="group mt-6 border-primary/50 text-primary hover:bg-primary/10 transition-colors"
+              className="group relative mt-6 inline-flex items-center gap-3 rounded-full px-7 py-3 text-[12px] font-mono uppercase tracking-[0.18em] backdrop-blur-md bg-white/5 bg-linear-to-r from-primary/35 via-secondary/25 to-accent/15 border border-white/10 ring-1 ring-primary/30 shadow-[0_6px_18px_-6px_rgba(0,0,0,0.55)] text-primary hover:from-primary/50 hover:via-secondary/35 hover:to-accent/25 hover:shadow-[0_8px_26px_-8px_rgba(0,0,0,0.6)] transition-all duration-500"
             >
-              <a href="#contacto" className="inline-flex items-center gap-2">
-                Empezar Ahora
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <a
+                href="#contacto"
+                aria-label="Ir a sección de contacto"
+                className="relative flex items-center gap-3"
+              >
+                <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
+                  <span className="absolute -left-full top-0 h-full w-1/3 bg-white/25 blur-xl opacity-0 group-hover:opacity-70 group-hover:translate-x-[300%] transition-all duration-1000 ease-out" />
+                  <span className="absolute inset-0 rounded-full ring-1 ring-white/10 group-hover:ring-white/20 transition-colors" />
+                </span>
+                <span className="relative z-10 font-semibold">
+                  Empezar Ahora
+                </span>
+                <span className="relative z-10 inline-flex items-center justify-center size-6 rounded-full bg-primary/25 text-primary/90 backdrop-blur-sm transition-transform group-hover:translate-x-1">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
               </a>
             </Button>
           </AnimatedReveal>

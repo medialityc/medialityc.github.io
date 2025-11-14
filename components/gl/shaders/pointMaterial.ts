@@ -1,5 +1,5 @@
-import * as THREE from 'three'
-import { periodicNoiseGLSL } from './utils'
+import * as THREE from "three";
+import { periodicNoiseGLSL } from "./utils";
 
 export class DofPointsMaterial extends THREE.ShaderMaterial {
   constructor() {
@@ -32,6 +32,9 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
       uniform float uRevealFactor;
       uniform float uRevealProgress;
       uniform float uTime;
+  uniform vec3 uColorA;
+  uniform vec3 uColorB;
+  uniform vec3 uColorC;
       varying float vDistance;
       varying float vPosY;
       varying vec3 vWorldPosition;
@@ -115,7 +118,12 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         
         float alpha = (1.04 - clamp(vDistance, 0.0, 1.0)) * clamp(smoothstep(-0.5, 0.25, vPosY), 0.0, 1.0) * uOpacity * revealMask * uRevealProgress * sparkleBrightness;
 
-        gl_FragColor = vec4(vec3(1.0), mix(alpha, sparkleBrightness - 1.1, uTransition));
+        // Base gradient blend between A and B using height, with C as highlight by sparkle
+        float h = clamp((vWorldPosition.y + 1.0) * 0.5, 0.0, 1.0);
+        vec3 baseCol = mix(uColorB, uColorA, h);
+        // Highlight modulation
+        vec3 highlight = mix(baseCol, uColorC, clamp((sparkleBrightness - 0.7) * 0.6, 0.0, 1.0));
+        gl_FragColor = vec4(highlight, mix(alpha, sparkleBrightness - 1.1, uTransition));
       }`,
       uniforms: {
         positions: { value: null },
@@ -128,11 +136,14 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         uPointSize: { value: 2.0 },
         uOpacity: { value: 1.0 },
         uRevealFactor: { value: 0.0 },
-        uRevealProgress: { value: 0.0 }
+        uRevealProgress: { value: 0.0 },
+        uColorA: { value: new THREE.Color("#75eff0") },
+        uColorB: { value: new THREE.Color("#375a65") },
+        uColorC: { value: new THREE.Color("#a2ffff") },
       },
       transparent: true,
       // blending: THREE.AdditiveBlending,
-      depthWrite: false
-    })
+      depthWrite: false,
+    });
   }
 }

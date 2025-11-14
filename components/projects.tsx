@@ -127,47 +127,65 @@ function ProjectItem({
         <button
           type="button"
           onClick={onNext}
-          className="group absolute z-10 right-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center justify-center rounded-full px-3.5 py-2 text-xs font-semibold text-white shadow-lg shadow-primary/30 ring-1 ring-white/20 bg-linear-to-r from-primary/80 via-primary to-pink-500 backdrop-blur transition-all hover:scale-105 hover:brightness-110"
+          className="group absolute z-10 right-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center justify-center rounded-full px-4 py-2.5 text-[11px] font-mono tracking-[0.18em] font-semibold text-primary backdrop-blur-md bg-white/5 bg-linear-to-r from-primary/35 via-secondary/25 to-accent/15 border border-white/10 ring-1 ring-primary/30 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.65)] hover:from-primary/50 hover:via-secondary/35 hover:to-accent/25 hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.7)] transition-all duration-500"
           aria-label={`Siguiente proyecto: ${nextName}`}
         >
-          <span className="mr-2">Siguiente:</span>
-          <span className="truncate max-w-[140px]">{nextName}</span>
-          <svg
-            className="ml-2 size-3.5 opacity-90 transition-transform group-hover:translate-x-0.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5 12h12M13 5l7 7-7 7"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
+            <span className="absolute -left-full top-0 h-full w-1/3 bg-white/25 blur-xl opacity-0 group-hover:opacity-70 group-hover:translate-x-[300%] transition-all duration-1000 ease-out" />
+            <span className="absolute inset-0 rounded-full ring-1 ring-white/10 group-hover:ring-white/20 transition-colors" />
+          </span>
+          <span className="relative z-10 flex items-center gap-2">
+            <span className="opacity-80">Siguiente:</span>
+            <span className="truncate max-w-[120px] font-semibold">
+              {nextName}
+            </span>
+            <span className="inline-flex items-center justify-center size-6 rounded-full bg-primary/25 text-primary/90 backdrop-blur-sm transition-transform group-hover:translate-x-1">
+              <svg
+                className="size-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12h12M13 5l7 7-7 7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </span>
         </button>
         <button
           type="button"
           onClick={onNext}
-          className="group absolute z-10 bottom-2 right-2 sm:hidden inline-flex items-center justify-center rounded-full px-3 py-1.5 text-[11px] font-semibold text-white shadow-md shadow-primary/30 ring-1 ring-white/20 bg-linear-to-r from-primary via-primary to-pink-500 backdrop-blur transition-all hover:scale-105"
+          className="group absolute z-10 bottom-2 right-2 sm:hidden inline-flex items-center justify-center rounded-full px-3.5 py-2 text-[10px] font-mono tracking-[0.22em] font-semibold text-primary backdrop-blur-md bg-white/5 bg-linear-to-r from-primary/40 via-secondary/30 to-accent/20 border border-white/10 ring-1 ring-primary/30 shadow-[0_6px_18px_-6px_rgba(0,0,0,0.6)] hover:from-primary/55 hover:via-secondary/40 hover:to-accent/30 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.65)] transition-all duration-500"
           aria-label={`Siguiente proyecto: ${nextName}`}
         >
-          <span className="mr-1.5">Siguiente</span>
-          <svg
-            className="size-3 opacity-90 transition-transform group-hover:translate-x-0.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5 12h12M13 5l7 7-7 7"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <span className="pointer-events-none absolute inset-0 rounded-full overflow-hidden">
+            <span className="absolute -left-full top-0 h-full w-1/3 bg-white/30 blur-lg opacity-0 group-hover:opacity-70 group-hover:translate-x-[300%] transition-all duration-1000 ease-out" />
+            <span className="absolute inset-0 rounded-full ring-1 ring-white/10 group-hover:ring-white/20 transition-colors" />
+          </span>
+          <span className="relative z-10 flex items-center gap-1.5">
+            <span className="opacity-80">Next</span>
+            <span className="inline-flex items-center justify-center size-5 rounded-full bg-primary/25 text-primary/90 backdrop-blur-sm transition-transform group-hover:translate-x-1">
+              <svg
+                className="size-3"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12h12M13 5l7 7-7 7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </span>
         </button>
       </div>
       <div className="text-center space-y-1">

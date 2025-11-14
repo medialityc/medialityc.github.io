@@ -30,52 +30,53 @@
    --muted -> Verde (#418f5a) (used for subtle backgrounds)
 */
 :root {
-  --background: #000000; /* updated neutral background */
+  /* New palette integration (#75eff0 #375a65 #25222e) */
+  --background: #25222e;
   --foreground: #ffffff;
 
-  /* Core brand */
-  --primary: #4690dc;
-  --primary-foreground: #ffffff;
-  --secondary: #4aa7c2;
-  --secondary-foreground: #ffffff;
-  --accent: #42a37c;
-  --accent-foreground: #ffffff;
-  --muted: #418f5a;
-  --muted-foreground: #ffffff;
+  /* Core brand mapping */
+  --primary: #75eff0; /* luminous aqua */
+  --primary-foreground: #0c2022;
+  --secondary: #375a65; /* deep teal */
+  --secondary-foreground: #e8f9fa;
+  --accent: #75eff0; /* reuse for accent highlights */
+  --accent-foreground: #062224;
+  --muted: #375a65; /* muted surfaces */
+  --muted-foreground: #c4d7dc;
 
-  /* Support tokens */
-  --border: #235a8f; /* darker tone derived from primary for subtle borders */
-  --border-soft: #2e4c66; /* even softer, for cards */
-  --border-strong: #357fc0; /* stronger emphasis borders (focus, separators) */
-  --ring: #4690dc40; /* semi-transparent ring */
-  --destructive: #ff4d4d; /* unchanged generic destructive */
+  /* Support tokens derived from palette */
+  --border: #2d4650;
+  --border-soft: #2a3c44;
+  --border-strong: #4fb8c0;
+  --ring: #75eff066;
+  --destructive: #ff4d4d;
   --destructive-foreground: #ffffff;
 
-  /* Charts (cycle through palette) */
-  --chart-1: #4690dc;
-  --chart-2: #4aa7c2;
-  --chart-3: #42a37c;
-  --chart-4: #418f5a;
-  --chart-5: #235a8f; /* darker accent */
+  /* Charts (palette cycling) */
+  --chart-1: #75eff0;
+  --chart-2: #4fb8c0;
+  --chart-3: #375a65;
+  --chart-4: #2d4650;
+  --chart-5: #1e2d34;
 
-  /* Gradient tokens (subtle, low-saturation) */
-  --gradient-start: #232223; /* base */
-  --gradient-mid: #1f2830; /* cooled neutral tinted by primary */
-  --gradient-end: #18242b; /* deeper tone for depth */
+  /* Gradient tokens tuned for new dark base */
+  --gradient-start: #25222e;
+  --gradient-mid: #2e3a44;
+  --gradient-end: #1a1d24;
   --background-gradient: linear-gradient(
-    135deg,
+    140deg,
     var(--gradient-start) 0%,
-    var(--gradient-mid) 45%,
+    var(--gradient-mid) 48%,
     var(--gradient-end) 100%
   );
 
-  /* Accent wash gradient for overlays (use with pseudo elements) */
+  /* Accent wash overlays (soft glows using primary hue) */
   --accent-gradient: radial-gradient(
-      circle at 30% 20%,
-      #4690dc22 0%,
+      circle at 30% 25%,
+      #75eff015 0%,
       transparent 55%
     ),
-    radial-gradient(circle at 70% 75%, #42a37c1e 0%, transparent 60%);
+    radial-gradient(circle at 70% 75%, #375a6512 0%, transparent 60%);
 }
 
 @utility container {
@@ -120,43 +121,42 @@
 
 /* Optional dark mode overrides using .dark class */
 .dark {
-  --background: #232223; /* align dark mode base with new neutral tone */
-  --foreground: #f5f7fa;
-  --primary: #4aa7c2; /* slightly lighter for dark bg */
-  --primary-foreground: #ffffff;
-  --secondary: #4690dc;
-  --secondary-foreground: #ffffff;
-  --accent: #42a37c;
-  --accent-foreground: #ffffff;
-  --muted: #418f5a;
-  --muted-foreground: #ffffff;
-  --border: #1e3d5f;
-  --border-soft: #233f58;
-  --border-strong: #3b8ecf;
-  --ring: #4aa7c240;
+  --background: #1b1c22;
+  --foreground: #eef5f6;
+  --primary: #75eff0;
+  --primary-foreground: #062224;
+  --secondary: #2f4953;
+  --secondary-foreground: #d7e9ec;
+  --accent: #4fb8c0;
+  --accent-foreground: #041a1c;
+  --muted: #2f4953;
+  --muted-foreground: #b9c9cf;
+  --border: #253842;
+  --border-soft: #223138;
+  --border-strong: #75eff0;
+  --ring: #75eff055;
   --destructive: #ff4d4d;
   --destructive-foreground: #ffffff;
-  --chart-1: #4aa7c2;
-  --chart-2: #4690dc;
-  --chart-3: #42a37c;
-  --chart-4: #418f5a;
-  --chart-5: #235a8f;
-
-  --gradient-start: #232223;
-  --gradient-mid: #1d252c;
-  --gradient-end: #151d22;
+  --chart-1: #75eff0;
+  --chart-2: #4fb8c0;
+  --chart-3: #375a65;
+  --chart-4: #2d4650;
+  --chart-5: #1e2d34;
+  --gradient-start: #1b1c22;
+  --gradient-mid: #222b33;
+  --gradient-end: #14171c;
   --background-gradient: linear-gradient(
-    135deg,
+    150deg,
     var(--gradient-start) 0%,
     var(--gradient-mid) 50%,
     var(--gradient-end) 100%
   );
   --accent-gradient: radial-gradient(
-      circle at 25% 25%,
-      #4aa7c228 0%,
+      circle at 30% 25%,
+      #75eff018 0%,
       transparent 55%
     ),
-    radial-gradient(circle at 75% 70%, #42a37c26 0%, transparent 60%);
+    radial-gradient(circle at 70% 75%, #4fb8c014 0%, transparent 60%);
 }
 
 body {

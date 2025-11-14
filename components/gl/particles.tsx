@@ -60,8 +60,12 @@ export function Particles({
     m.uniforms.positions.value = target.texture;
     m.uniforms.initialPositions.value =
       simulationMaterial.uniforms.positions.value;
+    // Palette colors (can be exposed later to controls if desired)
+    m.uniforms.uColorA.value = new THREE.Color("#75eff0");
+    m.uniforms.uColorB.value = new THREE.Color("#375a65");
+    m.uniforms.uColorC.value = new THREE.Color("#c9ffff");
     return m;
-  }, [simulationMaterial]);
+  }, [simulationMaterial, target.texture]);
 
   const [scene] = useState(() => new THREE.Scene());
   const [camera] = useState(

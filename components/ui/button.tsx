@@ -63,7 +63,7 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     >
-      <span
+      {/* <span
         data-border="top-left"
         style={
           {
@@ -82,7 +82,7 @@ function Button({
           } as React.CSSProperties
         }
         className="absolute w-(--h) bottom-(--hh) right-(--hh) h-0.5 -rotate-45 translate-x-1/2"
-      />
+      /> */}
 
       <Slottable>{children}</Slottable>
     </Comp>
