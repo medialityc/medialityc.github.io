@@ -168,6 +168,25 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Logo bounce animation on scroll (applied once) */
+@keyframes logo-bounce-in {
+  0% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-6px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.animate-logo-bounce-in {
+  animation: logo-bounce-in 0.55s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
 #webgl {
   top: 0;
   left: 0;

@@ -42,6 +42,10 @@ const featuredProjects: ProjectMeta[] = [
 ];
 
 export function ProjectsSection() {
+  const [current, setCurrent] = useState(0);
+  const total = featuredProjects.length;
+  const next = () => setCurrent((c) => (c + 1) % total);
+  const nextName = featuredProjects[(current + 1) % total]?.name ?? "Siguiente";
   return (
     <section id="proyectos" className="py-28 md:py-40 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background via-primary/5 to-background" />
@@ -59,24 +63,33 @@ export function ProjectsSection() {
           </p>
         </AnimatedReveal>
         <BrandMark variant="divider" />
-        <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-1 " role="list">
-          {featuredProjects.map((p, i) => (
-            <AnimatedReveal
-              key={p.id}
-              delay={0.1 + i * 0.07}
-              distance={40}
-              className="flex"
-            >
-              <ProjectItem meta={p} index={i} />
-            </AnimatedReveal>
-          ))}
-        </div>
+        <AnimatedReveal delay={0.1} distance={40} className="flex">
+          <ProjectItem
+            meta={featuredProjects[current]}
+            index={current}
+            onNext={next}
+            nextName={nextName}
+            total={total}
+          />
+        </AnimatedReveal>
       </div>
     </section>
   );
 }
 
-function ProjectItem({ meta, index }: { meta: ProjectMeta; index: number }) {
+function ProjectItem({
+  meta,
+  index,
+  onNext,
+  nextName,
+  total,
+}: {
+  meta: ProjectMeta;
+  index: number;
+  onNext: () => void;
+  nextName: string;
+  total: number;
+}) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -110,6 +123,52 @@ function ProjectItem({ meta, index }: { meta: ProjectMeta; index: number }) {
             sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"
           />
         </LaptopComponente>
+        {/* Botón flotante al lado de la laptop (derecha). En mobile, se muestra en la esquina inferior derecha. */}
+        <button
+          type="button"
+          onClick={onNext}
+          className="group absolute z-10 right-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center justify-center rounded-full px-3.5 py-2 text-xs font-semibold text-white shadow-lg shadow-primary/30 ring-1 ring-white/20 bg-linear-to-r from-primary/80 via-primary to-pink-500 backdrop-blur transition-all hover:scale-105 hover:brightness-110"
+          aria-label={`Siguiente proyecto: ${nextName}`}
+        >
+          <span className="mr-2">Siguiente:</span>
+          <span className="truncate max-w-[140px]">{nextName}</span>
+          <svg
+            className="ml-2 size-3.5 opacity-90 transition-transform group-hover:translate-x-0.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12h12M13 5l7 7-7 7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <button
+          type="button"
+          onClick={onNext}
+          className="group absolute z-10 bottom-2 right-2 sm:hidden inline-flex items-center justify-center rounded-full px-3 py-1.5 text-[11px] font-semibold text-white shadow-md shadow-primary/30 ring-1 ring-white/20 bg-linear-to-r from-primary via-primary to-pink-500 backdrop-blur transition-all hover:scale-105"
+          aria-label={`Siguiente proyecto: ${nextName}`}
+        >
+          <span className="mr-1.5">Siguiente</span>
+          <svg
+            className="size-3 opacity-90 transition-transform group-hover:translate-x-0.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12h12M13 5l7 7-7 7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
       <div className="text-center space-y-1">
         <h3 className="text-base font-semibold tracking-tight">{meta.name}</h3>
@@ -128,6 +187,7 @@ function ProjectItem({ meta, index }: { meta: ProjectMeta; index: number }) {
         <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider text-primary/70">
           <span className="size-1.5 rounded-full bg-primary animate-pulse" />
           {index + 1 < 10 ? `0${index + 1}` : index + 1}
+          <span className="ml-1 opacity-70">/ {total}</span>
         </span>
       </div>
     </div>

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { MobileMenu } from "./mobile-menu";
 import { useEffect, useRef, useState } from "react";
 import { Logo } from "./logo";
-import { LogoHorizontal } from "./logo-horizontal";
 
 const sections = [
   { id: "services", label: "Servicios" },
@@ -19,6 +18,8 @@ export const Header = () => {
   const [active, setActive] = useState<string>("");
   const [progress, setProgress] = useState(0); // scroll progress 0-1
   const observersRef = useRef<IntersectionObserver[]>([]);
+  const [bounceLogo, setBounceLogo] = useState(false);
+  const prevScrolledRef = useRef(scrolled);
 
   // Scroll states & progress
   useEffect(() => {
@@ -69,20 +70,33 @@ export const Header = () => {
     return () => observersRef.current.forEach((o) => o.disconnect());
   }, []);
 
-  // Clases condicionales para shrink + shadow
-  const containerPadding = scrolled ? "py-4 md:py-6" : "py-8";
-  const logoSize = scrolled
-    ? "w-[90px] md:w-[110px]"
+  // Ajustes de transform del logo y padding del header según scroll
+  const logoTransform = scrolled
+    ? "scale-[0.50] translate-y-7"
+    : "scale-[0.85] ";
+  // Trigger one-time bounce animation when first entering scrolled state
+  useEffect(() => {
+    if (scrolled && !prevScrolledRef.current) {
+      setBounceLogo(true);
+      const t = setTimeout(() => setBounceLogo(false), 600);
+      return () => clearTimeout(t);
+    }
+    prevScrolledRef.current = scrolled;
+  }, [scrolled]);
+  const logoWidth = scrolled
+    ? "w-[110px] md:w-[130px]"
     : "w-[150px] md:w-[170px]";
+  const logoWrapperHeight = scrolled ? "h-10" : "h-14"; // reduce vertical footprint
+  const wrapperPadding = scrolled ? "py-3 md:py-4" : "py-6 md:py-7";
 
   return (
     <div
       className={[
         "fixed top-0 left-0 w-full z-50",
-        containerPadding,
+        wrapperPadding,
         "transition-all duration-300",
         scrolled
-          ? "bg-background/70 backdrop-blur-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.35)]"
+          ? "bg-background/80 backdrop-blur-xl shadow-[0_4px_14px_-4px_rgba(0,0,0,0.35)]"
           : "bg-transparent",
       ].join(" ")}
       data-scrolled={scrolled ? "true" : "false"}
@@ -94,10 +108,30 @@ export const Header = () => {
           style={{ width: `${Math.min(progress * 100, 100)}%` }}
         />
       </div>
-      <header className="flex items-center justify-between container">
-        <Link href="/" aria-label="Ir al inicio">
-          <LogoHorizontal
-            className={logoSize + " transition-[width] duration-300 ease-out"}
+      <header
+        className={[
+          "flex items-center justify-between container relative",
+          scrolled ? "min-h-11" : "min-h-16",
+          "transition-[min-height] duration-300 ease-out",
+        ].join(" ")}
+      >
+        <Link
+          href="/"
+          aria-label="Ir al inicio"
+          className={[
+            "relative inline-flex items-center",
+            logoWrapperHeight,
+            "group",
+            bounceLogo ? "animate-logo-bounce-in" : "",
+          ].join(" ")}
+        >
+          <span className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-r from-primary/60 via-primary/25 to-transparent opacity-40 blur-lg group-hover:opacity-60 transition-opacity" />
+          <Logo
+            className={[
+              "origin-top-left drop-shadow-[0_6px_12px_rgba(0,0,0,0.45)] transition-transform duration-500 ease-out will-change-transform",
+              logoWidth,
+              logoTransform,
+            ].join(" ")}
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-8 font-mono text-xs uppercase tracking-wider">
