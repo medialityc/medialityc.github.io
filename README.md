@@ -107,3 +107,60 @@ Ejemplo rápido:
 - Paquete de assets (`png`, `svg`, `social-preview`) automatizado.
 - Storybook: casos para cada variante + estado con y sin movimiento.
 - Hook de motion preferencia para desactivar parallax según usuario.
+
+### Metadata y Assets Social/Favicons
+
+Se incorporaron metadatos SEO y social en `app/layout.tsx`:
+
+- **Título / Descripción / Keywords** en español alineados con servicios de marketing, publicidad y software.
+- **Open Graph & Twitter** apuntan a `public/brand/og-image.png` (placeholder 1200x630). Debe sustituirse por un PNG optimizado (<200KB, compresión `pngquant` o WebP fallback).
+- **Favicons multi-tamaño** (placeholders):
+  - `favicon-16x16.png`
+  - `favicon-32x32.png`
+  - `apple-touch-icon.png` (180x180)
+  - `android-chrome-192x192.png`
+  - `android-chrome-512x512.png`
+
+Estos archivos actualmente son placeholders de texto y necesitan reemplazo por imágenes reales. Recomendación de generación:
+
+```bash
+# macOS/Linux ejemplo de generación con sharp (Node)
+npx sharp public/brand/logo.svg \
+  -resize 512 512 \
+  -background "#0C0F14" -flatten \
+  public/android-chrome-512x512.png
+
+npx sharp public/android-chrome-512x512.png -resize 192 192 public/android-chrome-192x192.png
+npx sharp public/android-chrome-512x512.png -resize 180 180 public/apple-touch-icon.png
+npx sharp public/android-chrome-512x512.png -resize 32 32 public/favicon-32x32.png
+npx sharp public/android-chrome-512x512.png -resize 16 16 public/favicon-16x16.png
+```
+
+Para el **OG image**:
+
+```bash
+npx sharp public/brand/logo-horizontal.svg \
+  -resize 800 0 \
+  -extend 1200 630 -background "#0C0F14" -gravity center \
+  public/brand/og-image.png
+```
+
+Validar con:
+
+```bash
+# Herramientas externas (manual)
+# https://cards-dev.twitter.com/validator
+# https://developers.facebook.com/tools/debug/
+```
+
+### Checklist de Optimización
+
+- [ ] Reemplazar placeholders PNG por gráficos reales.
+- [ ] Comprimir OG image (target <150KB).
+- [ ] Verificar cuenta de Twitter `@medialityc`; ajustar si difiere.
+- [ ] Agregar `robots.ts` y `sitemap.ts` ya presentes (no extender sitemap por petición actual).
+- [ ] Añadir `prefers-reduced-motion` handling para animaciones opcional.
+
+### Nota
+
+No se modificó el sitemap más allá de la implementación base inicial, según tu indicación de omitir ampliaciones.

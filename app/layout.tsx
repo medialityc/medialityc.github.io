@@ -9,55 +9,78 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// SEO & Social metadata derived from user-provided <head> snippet
 export const metadata: Metadata = {
   title: {
-    default: "Medialityc | Data-Driven Media Intelligence",
+    default: "Medialityc - Marketing, Publicidad y Desarrollo de Software",
     template: "%s | Medialityc",
   },
   description:
-    "Plataforma de inteligencia de medios y analítica avanzada que transforma datos en decisiones estratégicas para marketing, comunicación y reputación.",
+    "Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software. Descubre nuestro enfoque innovador y creativo.",
   applicationName: "Medialityc",
   keywords: [
-    "medialityc",
-    "media intelligence",
-    "monitorización medios",
-    "social listening",
-    "reputación de marca",
-    "analítica de marketing",
-    "datos en tiempo real",
-    "PR insights",
+    "Medialityc",
+    "Marketing",
+    "Publicidad",
+    "Desarrollo de Software",
+    "Innovación",
+    "Creatividad",
   ],
   authors: [{ name: "Medialityc" }],
   creator: "Medialityc",
   publisher: "Medialityc",
-  metadataBase: new URL("https://www.medialityc.com"),
+  metadataBase: new URL("https://mdialityc.com"), // siguiendo URL solicitada
+  alternates: {
+    canonical: "https://mdialityc.com",
+  },
   openGraph: {
-    title: "Medialityc | Media Intelligence & Real-Time Insights",
+    title: "Medialityc - Marketing, Publicidad y Desarrollo de Software",
     description:
-      "Unifica monitoreo, analítica y reporting en una sola plataforma para decisiones más rápidas y precisas.",
-    url: "https://www.medialityc.com",
+      "Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software.",
+    url: "https://mdialityc.com",
     siteName: "Medialityc",
     locale: "es_ES",
     type: "website",
     images: [
       {
-        url: "/brand/logo.svg",
-        width: 1080,
-        height: 1080,
-        alt: "Medialityc Logo",
+        url: "/brand/og-image.png", // PNG placeholder 1200x630 (reemplazar con versión optimizada real)
+        width: 1200,
+        height: 630,
+        alt: "Medialityc - Marketing, Publicidad y Software",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Medialityc | Media Intelligence",
-    description: "Analítica y monitoreo de medios en tiempo real.",
-    creator: "@medialityc", // ajustar si existe
+    title: "Medialityc - Marketing, Publicidad y Desarrollo de Software",
+    description:
+      "Medialityc ofrece soluciones integrales de marketing, publicidad y desarrollo de software.",
+    images: ["/brand/og-image.png"], // PNG placeholder
+    creator: "@medialityc", // ajustar si existe cuenta oficial
   },
   icons: {
-    icon: "/brand/logo.svg",
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico" }, // fallback
+    ],
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "android-chrome",
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+      },
+      {
+        rel: "android-chrome",
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+      },
+    ],
+    shortcut: "/favicon.ico",
   },
-  category: "analytics",
+  category: "marketing",
   generator: "nextjs",
 };
 

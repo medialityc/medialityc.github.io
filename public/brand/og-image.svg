@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0C0F14" />
+      <stop offset="100%" stop-color="#1F2733" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <g font-family="Poppins, Arial, sans-serif" fill="#F0F0F1">
+    <text x="50%" y="40%" font-size="86" font-weight="600" text-anchor="middle">Medialityc</text>
+    <text x="50%" y="54%" font-size="40" font-weight="400" text-anchor="middle">Marketing · Publicidad · Software</text>
+    <text x="50%" y="70%" font-size="30" fill="#9AA4B1" text-anchor="middle">Soluciones integrales e innovación creativa</text>
+  </g>
+  <!-- Placeholder OG image. Replace with a branded PNG (1200x630) for production for optimal social sharing compatibility. -->
+</svg>
