@@ -74,9 +74,9 @@ Si prefieres sin basePath para pruebas locales, puedes temporalmente ejecutar:
 NODE_ENV=development pnpm build:pages
 ```
 
-#### Limpieza opcional
+#### Configuración
 
-Puedes borrar `next.config.mjs` y conservar sólo `next.config.ts` para evitar duplicidad (ya ambas comparten configuración de export).
+El proyecto usa un único archivo de configuración: `next.config.ts` con `output: "export"`. Se eliminó el archivo `next.config.mjs` duplicado para evitar confusión.
 
 ## Build your app
 
