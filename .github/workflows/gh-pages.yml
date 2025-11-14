@@ -1,46 +1,43 @@
 name: Deploy to GitHub Pages
 
 on:
-    push:
-        branches: ["main"]
-    workflow_dispatch:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
-    contents: write
-    pages: write
-    id-token: write
+  contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-    group: pages-deploy-${{ github.ref }}
-    cancel-in-progress: true
+  group: pages-deploy-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-    build-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: pnpm
-            - name: Enable Corepack (pnpm)
-              run: corepack enable
-            - name: Verify pnpm version
-              run: pnpm -v
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile
-            - name: Build & Export
-              run: pnpm build:pages
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                  path: ./out
-    deploy:
-        needs: build-deploy
-        runs-on: ubuntu-latest
-        steps:
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node (npm cache)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - name: Build & Export
+        run: npm run build:pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+  deploy:
+    needs: build-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
